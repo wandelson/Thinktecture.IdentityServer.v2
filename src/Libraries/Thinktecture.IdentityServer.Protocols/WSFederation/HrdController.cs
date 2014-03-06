@@ -434,6 +434,17 @@ namespace Thinktecture.IdentityServer.Protocols.WSFederation
             config.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
             config.CertificateValidator = X509CertificateValidator.None;
 
+            var decryptionCert = ConfigurationRepository.Keys.DecryptionCertificate;
+            if (decryptionCert != null)
+            {
+                var tokens = new List<SecurityToken>
+                {
+                    new X509SecurityToken(decryptionCert)
+                };
+
+                config.ServiceTokenResolver = SecurityTokenResolver.CreateDefaultSecurityTokenResolver(tokens.AsReadOnly(), true);
+            }
+
             var handler = SecurityTokenHandlerCollection.CreateDefaultSecurityTokenHandlerCollection(config);
             var identity = handler.ValidateToken(token).First();
 
