@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Thinktecture.IdentityServer.Custom;
 using Thinktecture.IdentityServer.Repositories;
 using Thinktecture.IdentityServer.Repositories.Sql;
 
@@ -46,7 +47,7 @@ namespace Thinktecture.IdentityServer.Web
 
         private void SetupCompositionContainer()
         {
-            Container.Current = new CompositionContainer(CompositionOptions.IsThreadSafe, new RepositoryExportProvider());
+            Container.Current = new CompositionContainer(new RepositoryExportProvider(), new CustomRepositoryExportProvider());
         }
     }
 }

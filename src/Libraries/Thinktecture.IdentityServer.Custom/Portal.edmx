@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Portal.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PortalStoreContainer">
+          <EntitySet Name="Entity" EntityType="Portal.Store.Entity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityToUser" EntityType="Portal.Store.EntityToUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="Portal.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleToEntity" EntityType="Portal.Store.RoleToEntity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="Portal.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_EntityToUser_Entity" Association="Portal.Store.FK_EntityToUser_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="EntityToUser" EntitySet="EntityToUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityToUser_User" Association="Portal.Store.FK_EntityToUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="EntityToUser" EntitySet="EntityToUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleToEntity_Entity" Association="Portal.Store.FK_RoleToEntity_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="RoleToEntity" EntitySet="RoleToEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleToEntity_Role" Association="Portal.Store.FK_RoleToEntity_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleToEntity" EntitySet="RoleToEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Entity" Association="Portal.Store.FK_User_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="EntityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="NationalRegister" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="ActivityId" Type="uniqueidentifier" />
+          <Property Name="Code" Type="bigint" />
+          <Property Name="IsPerson" Type="bit" Nullable="false" />
+          <Property Name="IsHeadOffice" Type="bit" Nullable="false" />
+          <Property Name="IsDriver" Type="bit" Nullable="false" />
+          <Property Name="Nickname" Type="varchar" MaxLength="40" />
+          <Property Name="Gender" Type="smallint" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="MaritalStatus" Type="smallint" Nullable="false" />
+          <Property Name="IdNumber" Type="varchar" MaxLength="15" />
+          <Property Name="IdExpeditor" Type="varchar" MaxLength="8" />
+          <Property Name="IdDate" Type="datetime" />
+          <Property Name="IsPoliticallyExposed" Type="bit" Nullable="false" />
+          <Property Name="Patrimony" Type="decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="IsUnreportedIncome" Type="bit" Nullable="false" />
+          <Property Name="IsUnreportedActivity" Type="bit" Nullable="false" />
+          <Property Name="IsUnreportedPartner" Type="bit" Nullable="false" />
+          <Property Name="MonthlyIncome" Type="decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="YearlyIncome" Type="decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="AddressId" Type="uniqueidentifier" />
+          <Property Name="TelephoneId" Type="uniqueidentifier" />
+          <Property Name="EmailId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="EntityToUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="Code" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoleToEntity">
+          <Key>
+            <PropertyRef Name="RoleToEntityId" />
+          </Key>
+          <Property Name="RoleToEntityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EntityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="UserPrincipalName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="EntityId" Type="uniqueidentifier" />
+          <Property Name="ResetPasswordToken" Type="uniqueidentifier" />
+          <Property Name="ResetPasswordSentAt" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="uniqueidentifier" />
+          <Property Name="ConfirmationSentAt" Type="datetime" />
+          <Property Name="ConfirmedAt" Type="datetime" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsMaster" Type="bit" Nullable="false" />
+          <Property Name="AuthenticationToken" Type="uniqueidentifier" />
+          <Property Name="SignInCount" Type="int" Nullable="false" />
+          <Property Name="CurrentSignInAt" Type="datetime" />
+          <Property Name="CurrentSignInIp" Type="varchar" MaxLength="15" />
+          <Property Name="LastSignInAt" Type="datetime" />
+          <Property Name="LastSignInIp" Type="varchar" MaxLength="15" />
+          <Property Name="FailedAttempts" Type="int" Nullable="false" />
+          <Property Name="UnlockToken" Type="uniqueidentifier" />
+          <Property Name="LockedAt" Type="datetime" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Telephone" Type="varchar" MaxLength="20" />
+          <Property Name="PasswordHash" Type="varbinary(max)" />
+          <Property Name="PasswordSalt" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_EntityToUser_Entity">
+          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="1" />
+          <End Role="EntityToUser" Type="Portal.Store.EntityToUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityToUser">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityToUser_User">
+          <End Role="User" Type="Portal.Store.User" Multiplicity="1" />
+          <End Role="EntityToUser" Type="Portal.Store.EntityToUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="EntityToUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleToEntity_Entity">
+          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="Portal.Store.RoleToEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleToEntity">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleToEntity_Role">
+          <End Role="Role" Type="Portal.Store.Role" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="Portal.Store.RoleToEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleToEntity">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Entity">
+          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="0..1" />
+          <End Role="User" Type="Portal.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Portal" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PortalContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Entity" EntityType="Portal.Entity" />
+          <EntitySet Name="EntityToUser" EntityType="Portal.EntityToUser" />
+          <EntitySet Name="Role" EntityType="Portal.Role" />
+          <EntitySet Name="RoleToEntity" EntityType="Portal.RoleToEntity" />
+          <EntitySet Name="User" EntityType="Portal.User" />
+          <AssociationSet Name="FK_EntityToUser_Entity" Association="Portal.FK_EntityToUser_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="EntityToUser" EntitySet="EntityToUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleToEntity_Entity" Association="Portal.FK_RoleToEntity_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="RoleToEntity" EntitySet="RoleToEntity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Entity" Association="Portal.FK_User_Entity">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityToUser_User" Association="Portal.FK_EntityToUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="EntityToUser" EntitySet="EntityToUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleToEntity_Role" Association="Portal.FK_RoleToEntity_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleToEntity" EntitySet="RoleToEntity" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="EntityId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="NationalRegister" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="ActivityId" Type="Guid" />
+          <Property Name="Code" Type="Int64" />
+          <Property Name="IsPerson" Type="Boolean" Nullable="false" />
+          <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
+          <Property Name="IsDriver" Type="Boolean" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="Int16" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="MaritalStatus" Type="Int16" Nullable="false" />
+          <Property Name="IdNumber" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="IdExpeditor" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="IdDate" Type="DateTime" Precision="3" />
+          <Property Name="IsPoliticallyExposed" Type="Boolean" Nullable="false" />
+          <Property Name="Patrimony" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="IsUnreportedIncome" Type="Boolean" Nullable="false" />
+          <Property Name="IsUnreportedActivity" Type="Boolean" Nullable="false" />
+          <Property Name="IsUnreportedPartner" Type="Boolean" Nullable="false" />
+          <Property Name="MonthlyIncome" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="YearlyIncome" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="AddressId" Type="Guid" />
+          <Property Name="TelephoneId" Type="Guid" />
+          <Property Name="EmailId" Type="Guid" />
+          <NavigationProperty Name="EntityToUser" Relationship="Portal.FK_EntityToUser_Entity" FromRole="Entity" ToRole="EntityToUser" />
+          <NavigationProperty Name="RoleToEntity" Relationship="Portal.FK_RoleToEntity_Entity" FromRole="Entity" ToRole="RoleToEntity" />
+          <NavigationProperty Name="User" Relationship="Portal.FK_User_Entity" FromRole="Entity" ToRole="User" />
+        </EntityType>
+        <EntityType Name="EntityToUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="EntityId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Entity" Relationship="Portal.FK_EntityToUser_Entity" FromRole="EntityToUser" ToRole="Entity" />
+          <NavigationProperty Name="User" Relationship="Portal.FK_EntityToUser_User" FromRole="EntityToUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Code" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RoleToEntity" Relationship="Portal.FK_RoleToEntity_Role" FromRole="Role" ToRole="RoleToEntity" />
+        </EntityType>
+        <EntityType Name="RoleToEntity">
+          <Key>
+            <PropertyRef Name="RoleToEntityId" />
+          </Key>
+          <Property Name="RoleToEntityId" Type="Guid" Nullable="false" />
+          <Property Name="EntityId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Entity" Relationship="Portal.FK_RoleToEntity_Entity" FromRole="RoleToEntity" ToRole="Entity" />
+          <NavigationProperty Name="Role" Relationship="Portal.FK_RoleToEntity_Role" FromRole="RoleToEntity" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UserPrincipalName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="EntityId" Type="Guid" />
+          <Property Name="ResetPasswordToken" Type="Guid" />
+          <Property Name="ResetPasswordSentAt" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="Guid" />
+          <Property Name="ConfirmationSentAt" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmedAt" Type="DateTime" Precision="3" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsMaster" Type="Boolean" Nullable="false" />
+          <Property Name="AuthenticationToken" Type="Guid" />
+          <Property Name="SignInCount" Type="Int32" Nullable="false" />
+          <Property Name="CurrentSignInAt" Type="DateTime" Precision="3" />
+          <Property Name="CurrentSignInIp" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="LastSignInAt" Type="DateTime" Precision="3" />
+          <Property Name="LastSignInIp" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="FailedAttempts" Type="Int32" Nullable="false" />
+          <Property Name="UnlockToken" Type="Guid" />
+          <Property Name="LockedAt" Type="DateTime" Precision="3" />
+          <Property Name="Mobile" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PasswordHash" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Entity" Relationship="Portal.FK_User_Entity" FromRole="User" ToRole="Entity" />
+          <NavigationProperty Name="EntityToUser" Relationship="Portal.FK_EntityToUser_User" FromRole="User" ToRole="EntityToUser" />
+        </EntityType>
+        <Association Name="FK_EntityToUser_Entity">
+          <End Role="Entity" Type="Portal.Entity" Multiplicity="1" />
+          <End Role="EntityToUser" Type="Portal.EntityToUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityToUser">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleToEntity_Entity">
+          <End Role="Entity" Type="Portal.Entity" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="Portal.RoleToEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleToEntity">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Entity">
+          <End Role="Entity" Type="Portal.Entity" Multiplicity="0..1" />
+          <End Role="User" Type="Portal.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityToUser_User">
+          <End Role="User" Type="Portal.User" Multiplicity="1" />
+          <End Role="EntityToUser" Type="Portal.EntityToUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="EntityToUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleToEntity_Role">
+          <End Role="Role" Type="Portal.Role" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="Portal.RoleToEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleToEntity">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortalStoreContainer" CdmEntityContainer="PortalContext">
+          <EntitySetMapping Name="Entity">
+            <EntityTypeMapping TypeName="Portal.Entity">
+              <MappingFragment StoreEntitySet="Entity">
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="NationalRegister" ColumnName="NationalRegister" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsPerson" ColumnName="IsPerson" />
+                <ScalarProperty Name="IsHeadOffice" ColumnName="IsHeadOffice" />
+                <ScalarProperty Name="IsDriver" ColumnName="IsDriver" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="IdExpeditor" ColumnName="IdExpeditor" />
+                <ScalarProperty Name="IdDate" ColumnName="IdDate" />
+                <ScalarProperty Name="IsPoliticallyExposed" ColumnName="IsPoliticallyExposed" />
+                <ScalarProperty Name="Patrimony" ColumnName="Patrimony" />
+                <ScalarProperty Name="IsUnreportedIncome" ColumnName="IsUnreportedIncome" />
+                <ScalarProperty Name="IsUnreportedActivity" ColumnName="IsUnreportedActivity" />
+                <ScalarProperty Name="IsUnreportedPartner" ColumnName="IsUnreportedPartner" />
+                <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
+                <ScalarProperty Name="YearlyIncome" ColumnName="YearlyIncome" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="TelephoneId" ColumnName="TelephoneId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityToUser">
+            <EntityTypeMapping TypeName="Portal.EntityToUser">
+              <MappingFragment StoreEntitySet="EntityToUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Portal.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleToEntity">
+            <EntityTypeMapping TypeName="Portal.RoleToEntity">
+              <MappingFragment StoreEntitySet="RoleToEntity">
+                <ScalarProperty Name="RoleToEntityId" ColumnName="RoleToEntityId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Portal.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UserPrincipalName" ColumnName="UserPrincipalName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="ResetPasswordToken" ColumnName="ResetPasswordToken" />
+                <ScalarProperty Name="ResetPasswordSentAt" ColumnName="ResetPasswordSentAt" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="ConfirmationSentAt" ColumnName="ConfirmationSentAt" />
+                <ScalarProperty Name="ConfirmedAt" ColumnName="ConfirmedAt" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsMaster" ColumnName="IsMaster" />
+                <ScalarProperty Name="AuthenticationToken" ColumnName="AuthenticationToken" />
+                <ScalarProperty Name="SignInCount" ColumnName="SignInCount" />
+                <ScalarProperty Name="CurrentSignInAt" ColumnName="CurrentSignInAt" />
+                <ScalarProperty Name="CurrentSignInIp" ColumnName="CurrentSignInIp" />
+                <ScalarProperty Name="LastSignInAt" ColumnName="LastSignInAt" />
+                <ScalarProperty Name="LastSignInIp" ColumnName="LastSignInIp" />
+                <ScalarProperty Name="FailedAttempts" ColumnName="FailedAttempts" />
+                <ScalarProperty Name="UnlockToken" ColumnName="UnlockToken" />
+                <ScalarProperty Name="LockedAt" ColumnName="LockedAt" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
