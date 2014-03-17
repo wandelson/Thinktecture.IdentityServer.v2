@@ -1212,6 +1212,7 @@
     <Content Include="Areas\Admin\Views\Protocol\ADFSIntegration.cshtml" />
     <Content Include="Areas\Admin\Views\OpenIdConnectClient\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\OpenIdConnectClient\Index.cshtml" />
+    <Content Include="Configuration\custom.config" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -1294,6 +1295,10 @@
     <ProjectReference Include="..\..\Libraries\Thinktecture.IdentityServer.Core\Thinktecture.IdentityServer.Core.csproj">
       <Project>{38ce5c59-909e-4da6-8e1d-7eee7312ca9a}</Project>
       <Name>Thinktecture.IdentityServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Thinktecture.IdentityServer.Custom\Thinktecture.IdentityServer.Custom.csproj">
+      <Project>{872e86ce-f92c-476d-a3e3-0a3cd7539765}</Project>
+      <Name>Thinktecture.IdentityServer.Custom</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Thinktecture.IdentityServer.Protocols\Thinktecture.IdentityServer.Protocols.csproj">
       <Project>{c129c90c-774c-47d7-a19e-57b31c87ae18}</Project>
