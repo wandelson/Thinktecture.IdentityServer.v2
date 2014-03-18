@@ -16,14 +16,16 @@ namespace Thinktecture.IdentityServer.Web.Controllers
 {
     public class AccountController : AccountControllerBase
     {
-        public AccountController() : base()
+        public AccountController()
+            : base()
         { }
 
-        public AccountController(IUserRepository userRepository, IConfigurationRepository configurationRepository) : base(userRepository, configurationRepository)
+        public AccountController(IUserRepository userRepository, IConfigurationRepository configurationRepository)
+            : base(userRepository, configurationRepository)
         { }
-        
+
         // shows the signin screen
-        public ActionResult SignIn(string returnUrl, bool mobile=false)
+        public ActionResult SignIn(string returnUrl, bool mobile = false)
         {
             // you can call AuthenticationHelper.GetRelyingPartyDetailsFromReturnUrl to get more information about the requested relying party
 
@@ -51,17 +53,16 @@ namespace Thinktecture.IdentityServer.Web.Controllers
                     // you can also pass additional claims to signin, which will be embedded in the session token
 
                     return SignIn(
-                        model.UserName, 
-                        AuthenticationMethods.Password, 
-                        model.ReturnUrl, 
-                        model.EnableSSO, 
+                        model.UserName,
+                        AuthenticationMethods.Password,
+                        model.ReturnUrl,
+                        model.EnableSSO,
                         ConfigurationRepository.Global.SsoCookieLifetime);
                 }
+                ModelState.AddModelError("", Resources.AccountController.IncorrectCredentialsNoAuthorization);
             }
 
-            ModelState.AddModelError("", Resources.AccountController.IncorrectCredentialsNoAuthorization);
-
-            model.ShowClientCertificateLink = ConfigurationRepository.Global.EnableClientCertificateAuthentication;
+            //model.ShowClientCertificateLink = ConfigurationRepository.Global.EnableClientCertificateAuthentication;
             return View(model);
         }
 
@@ -84,10 +85,10 @@ namespace Thinktecture.IdentityServer.Web.Controllers
                     // you can also pass additional claims to signin, which will be embedded in the session token
 
                     return SignIn(
-                        userName, 
-                        AuthenticationMethods.X509, 
-                        returnUrl, 
-                        false, 
+                        userName,
+                        AuthenticationMethods.X509,
+                        returnUrl,
+                        false,
                         ConfigurationRepository.Global.SsoCookieLifetime);
                 }
             }

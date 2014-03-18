@@ -135,4 +135,7 @@
 	<data name="UsernamePasswordSignIn" xml:space="preserve">
     <value>Username / Password Sign In</value>
   </data>
+	<data name="UserName" xml:space="preserve">
+    <value>O Nome do usuário é obrigatório</value>
+  </data>
 </root>
