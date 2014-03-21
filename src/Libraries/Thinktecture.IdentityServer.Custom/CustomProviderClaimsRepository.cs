@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
+using System.Web.Profile;
 using Thinktecture.IdentityServer.Repositories;
 
 namespace Thinktecture.IdentityServer.Custom
 {
     public class CustomProviderClaimsRepository : IClaimsRepository
     {
+        private const string ProfileClaimPrefix = "http://identityserver.thinktecture.com/claims/profileclaims/";
+
         public IEnumerable<Claim> GetClaims(ClaimsPrincipal principal, TokenService.RequestDetails requestDetails)
         {
             var username = principal.Identity.Name;
@@ -23,7 +27,35 @@ namespace Thinktecture.IdentityServer.Custom
 
         public IEnumerable<string> GetSupportedClaimTypes()
         {
-            throw new NotImplementedException();
+            var claimTypes = new List<string>
+            {
+                ClaimTypes.Name,
+                ClaimTypes.Email,
+                ClaimTypes.Role
+            };
+
+            if (ProfileManager.Enabled)
+            {
+                foreach (SettingsProperty prop in ProfileBase.Properties)
+                {
+                    claimTypes.Add(GetProfileClaimType(prop.Name.ToLowerInvariant()));
+                }
+            }
+
+            return claimTypes;
         }
+
+        protected virtual string GetProfileClaimType(string propertyName)
+        {
+            if (StandardClaimTypes.Mappings.ContainsKey(propertyName))
+            {
+                return StandardClaimTypes.Mappings[propertyName];
+            }
+            else
+            {
+                return string.Format("{0}{1}", ProfileClaimPrefix, propertyName);
+            }
+        }
+
     }
 }
