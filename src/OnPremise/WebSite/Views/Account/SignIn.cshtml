@@ -54,7 +54,7 @@
     <!-- Apple devices Homescreen icon -->
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
 </head>
-    
+
 @{
     ViewBag.Title = SignIn_cshtml.UsernamePasswordSignIn;
     if (Model.IsSigninRequest)
@@ -73,9 +73,10 @@
 <body class='login'>
 
     <div class="wrapper">
-        
+
         <h1><a href="index.html">
-            <img src="https://cdn.nobre.com.br/logo/mail_color.png"" alt="" class='retina-ready' > </a></h1>
+      <img src="https://cdn.nobre.com.br/logo/mail_color.png" alt="" class='retina-ready'>
+    </a></h1>
 
           <div id="summary" class="summary">
             @Html.ValidationSummaryWithContainer("")
@@ -99,7 +100,8 @@
                 </div>
                 <div class="controls">
 				<label class="checkbox">
-					<input type="checkbox" name="EnableSSO" value="false"> Mantenha-me conectado
+            <input type="checkbox" name="EnableSSO" value="false">
+            Mantenha-me conectado
 				</label>
 			    </div>
 
@@ -109,7 +111,7 @@
                 </div>
             }
             <div class="forget">
-                <a href="http://nobre.web.local/user/forgotPassword"><span>Esqueceu a senha?</span></a>
+        <a href="@Html.ForgotPasswordUrl()"><span>Esqueceu a senha?</span></a>
             </div>
 
      @*       @if (Model.ShowClientCertificateLink)

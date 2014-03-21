@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Azure" generation="1" functional="0" release="0" Id="ab9a8c5b-4515-4d9a-97ed-fee99237c60b" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Azure" generation="1" functional="0" release="0" Id="11e77a96-63c0-47e0-9c2d-c486be8f66c4" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="AzureGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -94,9 +94,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="bdec40e4-5646-4119-a5f7-8d76dcde5809" ref="Microsoft.RedDog.Contract\ServiceContract\AzureContract@ServiceDefinition">
+    <implementation Id="66a4aace-862d-4add-8a26-7229967ad8eb" ref="Microsoft.RedDog.Contract\ServiceContract\AzureContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="a24f97fe-57d5-458a-856a-39600f7ef944" ref="Microsoft.RedDog.Contract\Interface\WebSite:SSLEndpoint@ServiceDefinition">
+        <interfaceReference Id="efddb597-d62d-4745-bee8-c89618f3554d" ref="Microsoft.RedDog.Contract\Interface\WebSite:SSLEndpoint@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Azure/AzureGroup/WebSite:SSLEndpoint" />
           </inPort>
