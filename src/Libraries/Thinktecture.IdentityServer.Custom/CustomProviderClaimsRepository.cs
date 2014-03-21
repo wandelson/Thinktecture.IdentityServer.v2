@@ -20,6 +20,7 @@ namespace Thinktecture.IdentityServer.Custom
             if (!String.IsNullOrEmpty(username))
             {
                 claims.Add(new Claim(ClaimTypes.Email, username));
+            
             }
 
             return claims;

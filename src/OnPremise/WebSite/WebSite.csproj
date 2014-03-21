@@ -728,6 +728,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\dummy.txt" />
+    <EmbeddedResource Include="App_LocalResources\Account\SignIn.cshtml.pt-BR.resx">
+      <DependentUpon>SignIn.cshtml.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App_LocalResources\OidcAuthorize\Consent.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Consent.Designer.cs</LastGenOutput>
@@ -1684,7 +1687,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
