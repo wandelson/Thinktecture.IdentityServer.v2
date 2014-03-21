@@ -16,27 +16,27 @@
 
     <title>Nobre Seguradora</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/bootstrap.min.css">
     <!-- Bootstrap responsive -->
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/bootstrap-responsive.min.css">
     <!-- jQuery UI -->
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/plugins/jquery-ui/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/plugins/jquery-ui/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/style.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/style.css">
     <!-- Color CSS -->
-    <link rel="stylesheet" href="http://cdn.nobre.net.br/theme/css/themes.css">
+    <link rel="stylesheet" href="https://cdn.nobre.com.br/theme/css/themes.css">
 
     <link href="~/Scripts/Account/SignIn.css" rel="stylesheet" />
 
     <!-- jQuery -->
-    <script src="http://cdn.nobre.net.br/theme/js/jquery.min.js"></script>
+    <script src="https://cdn.nobre.com.br/theme/js/jquery.min.js"></script>
     <!-- Nice Scroll -->
-    <script src="http://cdn.nobre.net.br/theme/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="https://cdn.nobre.com.br/theme/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
     <!-- icheck -->
-    <script src="http://cdn.nobre.net.br/theme/js/plugins/icheck/jquery.icheck.min.js"></script>
+    <script src="https://cdn.nobre.com.br/theme/js/plugins/icheck/jquery.icheck.min.js"></script>
     <!-- Bootstrap -->
-    <script src="http://cdn.nobre.net.br/theme/js/bootstrap.min.js"></script>
+    <script src="https://cdn.nobre.com.br/theme/js/bootstrap.min.js"></script>
 
     <script src="~/Scripts/Account/SignIn.js"></script>
 
@@ -54,21 +54,36 @@
     <!-- Apple devices Homescreen icon -->
     <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
 </head>
+    
+@{
+    ViewBag.Title = SignIn_cshtml.UsernamePasswordSignIn;
+    if (Model.IsSigninRequest)
+    {
+        ViewBag.HideMenu = true;
+    }
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>@string.Format(SignIn_cshtml.UnauthorizedAuthenticatedUser, User.Identity.Name)</h2>
+}
+
+
 
 <body class='login'>
 
     <div class="wrapper">
-
+        
         <h1><a href="index.html">
-            <img src="http://cdn.nobre.net.br/logo/mail_color.png"" alt="" class='retina-ready' > </a></h1>
+            <img src="https://cdn.nobre.com.br/logo/mail_color.png"" alt="" class='retina-ready' > </a></h1>
 
           <div id="summary" class="summary">
             @Html.ValidationSummaryWithContainer("")
         </div>
 
         <div class="login-body">
-            <h2>Entrar</h2>
-            @using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class = "form-validate", id = "form" }))
+            <h2>@SignIn_cshtml.Login</h2>
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 

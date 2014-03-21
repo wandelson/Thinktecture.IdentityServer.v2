@@ -62,7 +62,7 @@ namespace Thinktecture.IdentityServer.Web.Controllers
                 ModelState.AddModelError("", Resources.AccountController.IncorrectCredentialsNoAuthorization);
             }
 
-            //model.ShowClientCertificateLink = ConfigurationRepository.Global.EnableClientCertificateAuthentication;
+            model.ShowClientCertificateLink = ConfigurationRepository.Global.EnableClientCertificateAuthentication;
             return View(model);
         }
 
