@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Azure" generation="1" functional="0" release="0" Id="11e77a96-63c0-47e0-9c2d-c486be8f66c4" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Azure" generation="1" functional="0" release="0" Id="dca2ea54-b994-41b2-89b8-844d36c76043" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="AzureGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -52,7 +52,7 @@
       </maps>
       <components>
         <groupHascomponents>
-          <role name="WebSite" generation="1" functional="0" release="0" software="C:\git\nobre\fork\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\csx\Release\roles\WebSite" entryPoint="base\x64\WaHostBootstrapper.exe" parameters="base\x64\WaIISHost.exe " memIndex="3584" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
+          <role name="WebSite" generation="1" functional="0" release="0" software="C:\Git\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\csx\Release\roles\WebSite" entryPoint="base\x64\WaHostBootstrapper.exe" parameters="base\x64\WaIISHost.exe " memIndex="3584" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
             <componentports>
               <inPort name="SSLEndpoint" protocol="https" portRanges="443">
                 <certificate>
@@ -94,9 +94,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="66a4aace-862d-4add-8a26-7229967ad8eb" ref="Microsoft.RedDog.Contract\ServiceContract\AzureContract@ServiceDefinition">
+    <implementation Id="03d6b849-2497-47aa-9556-ef141f0c751a" ref="Microsoft.RedDog.Contract\ServiceContract\AzureContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="efddb597-d62d-4745-bee8-c89618f3554d" ref="Microsoft.RedDog.Contract\Interface\WebSite:SSLEndpoint@ServiceDefinition">
+        <interfaceReference Id="0bdebfc5-df71-474f-8f03-289222d5cadc" ref="Microsoft.RedDog.Contract\Interface\WebSite:SSLEndpoint@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/Azure/AzureGroup/WebSite:SSLEndpoint" />
           </inPort>

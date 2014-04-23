@@ -95,5 +95,6 @@ namespace Thinktecture.IdentityServer.Web.Controllers
 
             return View("Error");
         }
+
     }
 }

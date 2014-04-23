@@ -30,14 +30,14 @@
     <Property name="Configuration" value="Release" />
     <Property name="Platform" value="AnyCPU" />
     <Property name="RoleTargetFramework" value="v4.5" />
-    <Property name="OutputDir" value="C:\git\nobre\fork\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\" />
+    <Property name="OutputDir" value="C:\Git\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\" />
     <Property name="EntryPoint" value="WebSite.dll" />
-    <Property name="SourceDir" value="C:\git\nobre\fork\Thinktecture.IdentityServer.v2\src\OnPremise\WebSite\" />
-    <Property name="SitePhysicalPath" value="C:\git\nobre\fork\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\" />
+    <Property name="SourceDir" value="C:\Git\Thinktecture.IdentityServer.v2\src\OnPremise\WebSite\" />
+    <Property name="SitePhysicalPath" value="C:\Git\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\" />
     <Property name="TargetRuntimeVersion" value="v4.0" />
   </Properties>
   <Sites>
-    <Site name="Web" physicalDirectory="C:\git\nobre\fork\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\">
+    <Site name="Web" physicalDirectory="C:\Git\Thinktecture.IdentityServer.v2\src\OnPremise\Azure\obj\Release\WebSite\">
       <Bindings>
         <Binding name="Endpoint1" endpointName="SSLEndpoint" />
       </Bindings>

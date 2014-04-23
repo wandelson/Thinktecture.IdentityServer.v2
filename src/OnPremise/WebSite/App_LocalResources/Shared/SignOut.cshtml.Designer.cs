@@ -61,20 +61,29 @@ namespace Thinktecture.IdentityServer.Web.App_LocalResources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign Out.
-        /// </summary>
-        public static string _ {
-            get {
-                return ResourceManager.GetString("", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Return to application.
         /// </summary>
         public static string ReturnToRP {
             get {
                 return ResourceManager.GetString("ReturnToRP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string SignOut {
+            get {
+                return ResourceManager.GetString("SignOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teste.
+        /// </summary>
+        public static string Teste {
+            get {
+                return ResourceManager.GetString("Teste", resourceCulture);
             }
         }
     }
