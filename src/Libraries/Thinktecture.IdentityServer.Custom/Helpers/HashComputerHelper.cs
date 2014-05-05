@@ -8,7 +8,7 @@ namespace Thinktecture.IdentityServer.Custom.Helpers
         {
             // Let us use SHA256 algorithm to
             // generate the hash from this salted password
-            SHA256 sha = new SHA256CryptoServiceProvider();
+            SHA1 sha = new SHA1CryptoServiceProvider();
             byte[] dataBytes = UtilityHelper.GetBytes(message);
             byte[] resultBytes = sha.ComputeHash(dataBytes);
 
