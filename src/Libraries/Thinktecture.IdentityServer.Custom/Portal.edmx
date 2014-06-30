@@ -4,30 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Portal.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="PortalStoreContainer">
-          <EntitySet Name="Entity" EntityType="Portal.Store.Entity" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EntityToUser" EntityType="Portal.Store.EntityToUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Role" EntityType="Portal.Store.Role" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RoleToEntity" EntityType="Portal.Store.RoleToEntity" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="User" EntityType="Portal.Store.User" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_EntityToUser_Entity" Association="Portal.Store.FK_EntityToUser_Entity">
+      <Schema Namespace="PortalContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PortalContextStoreContainer">
+          <EntitySet Name="Entity" EntityType="PortalContext.Store.Entity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityToUser" EntityType="PortalContext.Store.EntityToUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="PortalContext.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleToEntity" EntityType="PortalContext.Store.RoleToEntity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="PortalContext.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_EntityToUser_Entity" Association="PortalContext.Store.FK_EntityToUser_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="EntityToUser" EntitySet="EntityToUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_EntityToUser_User" Association="Portal.Store.FK_EntityToUser_User">
+          <AssociationSet Name="FK_EntityToUser_User" Association="PortalContext.Store.FK_EntityToUser_User">
             <End Role="User" EntitySet="User" />
             <End Role="EntityToUser" EntitySet="EntityToUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleToEntity_Entity" Association="Portal.Store.FK_RoleToEntity_Entity">
+          <AssociationSet Name="FK_RoleToEntity_Entity" Association="PortalContext.Store.FK_RoleToEntity_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="RoleToEntity" EntitySet="RoleToEntity" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleToEntity_Role" Association="Portal.Store.FK_RoleToEntity_Role">
+          <AssociationSet Name="FK_RoleToEntity_Role" Association="PortalContext.Store.FK_RoleToEntity_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="RoleToEntity" EntitySet="RoleToEntity" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Entity" Association="Portal.Store.FK_User_Entity">
+          <AssociationSet Name="FK_User_Entity" Association="PortalContext.Store.FK_User_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
@@ -56,7 +56,7 @@
           <Property Name="IsPoliticallyExposed" Type="bit" Nullable="false" />
           <Property Name="Patrimony" Type="decimal" Nullable="false" Precision="17" Scale="2" />
           <Property Name="IsUnreportedIncome" Type="bit" Nullable="false" />
-          <Property Name="IsUnreportedActivity" Type="bit" Nullable="false" />
+          <Property Name="IsUnreportedActivityOrOccupation" Type="bit" Nullable="false" />
           <Property Name="IsUnreportedPartner" Type="bit" Nullable="false" />
           <Property Name="MonthlyIncome" Type="decimal" Nullable="false" Precision="17" Scale="2" />
           <Property Name="YearlyIncome" Type="decimal" Nullable="false" Precision="17" Scale="2" />
@@ -82,6 +82,7 @@
           <Property Name="UpdatedAt" Type="datetime" />
           <Property Name="Code" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RoleToEntity">
           <Key>
@@ -127,8 +128,8 @@
           <Property Name="PasswordSalt" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_EntityToUser_Entity">
-          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="1" />
-          <End Role="EntityToUser" Type="Portal.Store.EntityToUser" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Store.Entity" Multiplicity="1" />
+          <End Role="EntityToUser" Type="PortalContext.Store.EntityToUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -139,8 +140,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EntityToUser_User">
-          <End Role="User" Type="Portal.Store.User" Multiplicity="1" />
-          <End Role="EntityToUser" Type="Portal.Store.EntityToUser" Multiplicity="*" />
+          <End Role="User" Type="PortalContext.Store.User" Multiplicity="1" />
+          <End Role="EntityToUser" Type="PortalContext.Store.EntityToUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -151,8 +152,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoleToEntity_Entity">
-          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="1" />
-          <End Role="RoleToEntity" Type="Portal.Store.RoleToEntity" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Store.Entity" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="PortalContext.Store.RoleToEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -163,8 +164,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoleToEntity_Role">
-          <End Role="Role" Type="Portal.Store.Role" Multiplicity="1" />
-          <End Role="RoleToEntity" Type="Portal.Store.RoleToEntity" Multiplicity="*" />
+          <End Role="Role" Type="PortalContext.Store.Role" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="PortalContext.Store.RoleToEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="RoleId" />
@@ -175,8 +176,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Entity">
-          <End Role="Entity" Type="Portal.Store.Entity" Multiplicity="0..1" />
-          <End Role="User" Type="Portal.Store.User" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Store.Entity" Multiplicity="0..1" />
+          <End Role="User" Type="PortalContext.Store.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -190,30 +191,30 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Portal" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="PortalContext" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Entity" EntityType="Portal.Entity" />
-          <EntitySet Name="EntityToUser" EntityType="Portal.EntityToUser" />
-          <EntitySet Name="Role" EntityType="Portal.Role" />
-          <EntitySet Name="RoleToEntity" EntityType="Portal.RoleToEntity" />
-          <EntitySet Name="User" EntityType="Portal.User" />
-          <AssociationSet Name="FK_EntityToUser_Entity" Association="Portal.FK_EntityToUser_Entity">
+      <Schema Namespace="PortalContext" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PortalEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Entity" EntityType="PortalContext.Entity" />
+          <EntitySet Name="EntityToUser" EntityType="PortalContext.EntityToUser" />
+          <EntitySet Name="Role" EntityType="PortalContext.Role" />
+          <EntitySet Name="RoleToEntity" EntityType="PortalContext.RoleToEntity" />
+          <EntitySet Name="User" EntityType="PortalContext.User" />
+          <AssociationSet Name="FK_EntityToUser_Entity" Association="PortalContext.FK_EntityToUser_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="EntityToUser" EntitySet="EntityToUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleToEntity_Entity" Association="Portal.FK_RoleToEntity_Entity">
+          <AssociationSet Name="FK_RoleToEntity_Entity" Association="PortalContext.FK_RoleToEntity_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="RoleToEntity" EntitySet="RoleToEntity" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Entity" Association="Portal.FK_User_Entity">
+          <AssociationSet Name="FK_User_Entity" Association="PortalContext.FK_User_Entity">
             <End Role="Entity" EntitySet="Entity" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_EntityToUser_User" Association="Portal.FK_EntityToUser_User">
+          <AssociationSet Name="FK_EntityToUser_User" Association="PortalContext.FK_EntityToUser_User">
             <End Role="User" EntitySet="User" />
             <End Role="EntityToUser" EntitySet="EntityToUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoleToEntity_Role" Association="Portal.FK_RoleToEntity_Role">
+          <AssociationSet Name="FK_RoleToEntity_Role" Association="PortalContext.FK_RoleToEntity_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="RoleToEntity" EntitySet="RoleToEntity" />
           </AssociationSet>
@@ -242,16 +243,16 @@
           <Property Name="IsPoliticallyExposed" Type="Boolean" Nullable="false" />
           <Property Name="Patrimony" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
           <Property Name="IsUnreportedIncome" Type="Boolean" Nullable="false" />
-          <Property Name="IsUnreportedActivity" Type="Boolean" Nullable="false" />
+          <Property Name="IsUnreportedActivityOrOccupation" Type="Boolean" Nullable="false" />
           <Property Name="IsUnreportedPartner" Type="Boolean" Nullable="false" />
           <Property Name="MonthlyIncome" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
           <Property Name="YearlyIncome" Type="Decimal" Nullable="false" Precision="17" Scale="2" />
           <Property Name="AddressId" Type="Guid" />
           <Property Name="TelephoneId" Type="Guid" />
           <Property Name="EmailId" Type="Guid" />
-          <NavigationProperty Name="EntityToUser" Relationship="Portal.FK_EntityToUser_Entity" FromRole="Entity" ToRole="EntityToUser" />
-          <NavigationProperty Name="RoleToEntity" Relationship="Portal.FK_RoleToEntity_Entity" FromRole="Entity" ToRole="RoleToEntity" />
-          <NavigationProperty Name="User" Relationship="Portal.FK_User_Entity" FromRole="Entity" ToRole="User" />
+          <NavigationProperty Name="EntityToUser" Relationship="PortalContext.FK_EntityToUser_Entity" FromRole="Entity" ToRole="EntityToUser" />
+          <NavigationProperty Name="RoleToEntity" Relationship="PortalContext.FK_RoleToEntity_Entity" FromRole="Entity" ToRole="RoleToEntity" />
+          <NavigationProperty Name="User" Relationship="PortalContext.FK_User_Entity" FromRole="Entity" ToRole="User" />
         </EntityType>
         <EntityType Name="EntityToUser">
           <Key>
@@ -261,8 +262,8 @@
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="EntityId" Type="Guid" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Entity" Relationship="Portal.FK_EntityToUser_Entity" FromRole="EntityToUser" ToRole="Entity" />
-          <NavigationProperty Name="User" Relationship="Portal.FK_EntityToUser_User" FromRole="EntityToUser" ToRole="User" />
+          <NavigationProperty Name="Entity" Relationship="PortalContext.FK_EntityToUser_Entity" FromRole="EntityToUser" ToRole="Entity" />
+          <NavigationProperty Name="User" Relationship="PortalContext.FK_EntityToUser_User" FromRole="EntityToUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -273,7 +274,8 @@
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <Property Name="Code" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="RoleToEntity" Relationship="Portal.FK_RoleToEntity_Role" FromRole="Role" ToRole="RoleToEntity" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RoleToEntity" Relationship="PortalContext.FK_RoleToEntity_Role" FromRole="Role" ToRole="RoleToEntity" />
         </EntityType>
         <EntityType Name="RoleToEntity">
           <Key>
@@ -283,8 +285,8 @@
           <Property Name="EntityId" Type="Guid" Nullable="false" />
           <Property Name="RoleId" Type="Guid" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Entity" Relationship="Portal.FK_RoleToEntity_Entity" FromRole="RoleToEntity" ToRole="Entity" />
-          <NavigationProperty Name="Role" Relationship="Portal.FK_RoleToEntity_Role" FromRole="RoleToEntity" ToRole="Role" />
+          <NavigationProperty Name="Entity" Relationship="PortalContext.FK_RoleToEntity_Entity" FromRole="RoleToEntity" ToRole="Entity" />
+          <NavigationProperty Name="Role" Relationship="PortalContext.FK_RoleToEntity_Role" FromRole="RoleToEntity" ToRole="Role" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -319,12 +321,12 @@
           <Property Name="Telephone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="PasswordHash" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PasswordSalt" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Entity" Relationship="Portal.FK_User_Entity" FromRole="User" ToRole="Entity" />
-          <NavigationProperty Name="EntityToUser" Relationship="Portal.FK_EntityToUser_User" FromRole="User" ToRole="EntityToUser" />
+          <NavigationProperty Name="Entity" Relationship="PortalContext.FK_User_Entity" FromRole="User" ToRole="Entity" />
+          <NavigationProperty Name="EntityToUser" Relationship="PortalContext.FK_EntityToUser_User" FromRole="User" ToRole="EntityToUser" />
         </EntityType>
         <Association Name="FK_EntityToUser_Entity">
-          <End Role="Entity" Type="Portal.Entity" Multiplicity="1" />
-          <End Role="EntityToUser" Type="Portal.EntityToUser" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Entity" Multiplicity="1" />
+          <End Role="EntityToUser" Type="PortalContext.EntityToUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -335,8 +337,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoleToEntity_Entity">
-          <End Role="Entity" Type="Portal.Entity" Multiplicity="1" />
-          <End Role="RoleToEntity" Type="Portal.RoleToEntity" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Entity" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="PortalContext.RoleToEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -347,8 +349,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Entity">
-          <End Role="Entity" Type="Portal.Entity" Multiplicity="0..1" />
-          <End Role="User" Type="Portal.User" Multiplicity="*" />
+          <End Role="Entity" Type="PortalContext.Entity" Multiplicity="0..1" />
+          <End Role="User" Type="PortalContext.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entity">
               <PropertyRef Name="EntityId" />
@@ -359,8 +361,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EntityToUser_User">
-          <End Role="User" Type="Portal.User" Multiplicity="1" />
-          <End Role="EntityToUser" Type="Portal.EntityToUser" Multiplicity="*" />
+          <End Role="User" Type="PortalContext.User" Multiplicity="1" />
+          <End Role="EntityToUser" Type="PortalContext.EntityToUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
@@ -371,8 +373,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoleToEntity_Role">
-          <End Role="Role" Type="Portal.Role" Multiplicity="1" />
-          <End Role="RoleToEntity" Type="Portal.RoleToEntity" Multiplicity="*" />
+          <End Role="Role" Type="PortalContext.Role" Multiplicity="1" />
+          <End Role="RoleToEntity" Type="PortalContext.RoleToEntity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="RoleId" />
@@ -387,9 +389,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PortalStoreContainer" CdmEntityContainer="PortalContext">
+        <EntityContainerMapping StorageEntityContainer="PortalContextStoreContainer" CdmEntityContainer="PortalEntities">
           <EntitySetMapping Name="Entity">
-            <EntityTypeMapping TypeName="Portal.Entity">
+            <EntityTypeMapping TypeName="PortalContext.Entity">
               <MappingFragment StoreEntitySet="Entity">
                 <ScalarProperty Name="EntityId" ColumnName="EntityId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -411,7 +413,7 @@
                 <ScalarProperty Name="IsPoliticallyExposed" ColumnName="IsPoliticallyExposed" />
                 <ScalarProperty Name="Patrimony" ColumnName="Patrimony" />
                 <ScalarProperty Name="IsUnreportedIncome" ColumnName="IsUnreportedIncome" />
-                <ScalarProperty Name="IsUnreportedActivity" ColumnName="IsUnreportedActivity" />
+                <ScalarProperty Name="IsUnreportedActivityOrOccupation" ColumnName="IsUnreportedActivityOrOccupation" />
                 <ScalarProperty Name="IsUnreportedPartner" ColumnName="IsUnreportedPartner" />
                 <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
                 <ScalarProperty Name="YearlyIncome" ColumnName="YearlyIncome" />
@@ -422,7 +424,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EntityToUser">
-            <EntityTypeMapping TypeName="Portal.EntityToUser">
+            <EntityTypeMapping TypeName="PortalContext.EntityToUser">
               <MappingFragment StoreEntitySet="EntityToUser">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EntityId" ColumnName="EntityId" />
@@ -431,18 +433,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="Portal.Role">
+            <EntityTypeMapping TypeName="PortalContext.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoleToEntity">
-            <EntityTypeMapping TypeName="Portal.RoleToEntity">
+            <EntityTypeMapping TypeName="PortalContext.RoleToEntity">
               <MappingFragment StoreEntitySet="RoleToEntity">
                 <ScalarProperty Name="RoleToEntityId" ColumnName="RoleToEntityId" />
                 <ScalarProperty Name="EntityId" ColumnName="EntityId" />
@@ -452,7 +455,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="Portal.User">
+            <EntityTypeMapping TypeName="PortalContext.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -502,6 +505,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

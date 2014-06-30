@@ -41,7 +41,7 @@ namespace Thinktecture.IdentityServer.Custom
         public bool IsPoliticallyExposed { get; set; }
         public decimal Patrimony { get; set; }
         public bool IsUnreportedIncome { get; set; }
-        public bool IsUnreportedActivity { get; set; }
+        public bool IsUnreportedActivityOrOccupation { get; set; }
         public bool IsUnreportedPartner { get; set; }
         public decimal MonthlyIncome { get; set; }
         public decimal YearlyIncome { get; set; }

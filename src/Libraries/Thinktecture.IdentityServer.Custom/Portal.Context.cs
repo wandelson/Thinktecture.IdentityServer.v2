@@ -13,10 +13,10 @@ namespace Thinktecture.IdentityServer.Custom
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PortalContext : DbContext
+    public partial class PortalEntities : DbContext
     {
-        public PortalContext()
-            : base("name=PortalContext")
+        public PortalEntities()
+            : base("name=PortalEntities")
         {
         }
     

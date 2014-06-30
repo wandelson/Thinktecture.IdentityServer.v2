@@ -3,7 +3,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Security;
 using Thinktecture.IdentityServer.Custom.Helpers;
-using Thinktecture.IdentityServer.Repositories;
 
 namespace Thinktecture.IdentityServer.Custom
 {
@@ -13,11 +12,16 @@ namespace Thinktecture.IdentityServer.Custom
         {
             if (username.Contains("@"))
             {
-                using (var context = new PortalContext())
+                using (var context = new PortalEntities())
                 {
                     var user = context.User.FirstOrDefault(p => p.Mail == username);
 
                     if (user == null)
+                    {
+                        return false;
+                    }
+
+                    if (user.PasswordHash == null || user.PasswordSalt == null)
                     {
                         return false;
                     }
@@ -40,7 +44,6 @@ namespace Thinktecture.IdentityServer.Custom
         {
             throw new System.NotImplementedException();
         }
-
 
         public bool ValidateUser(X509Certificate2 clientCertificate, out string userName)
         {
