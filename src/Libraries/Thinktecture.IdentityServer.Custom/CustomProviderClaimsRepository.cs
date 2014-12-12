@@ -19,8 +19,17 @@ namespace Thinktecture.IdentityServer.Custom
 
             if (!String.IsNullOrEmpty(username))
             {
+                using (var context = new PortalEntities())
+                {
+                    var user = context.User.FirstOrDefault(p => p.Mail == username);
+
+                    if (user != null)
+                    {
+                        claims.Add(new Claim("IsAdmin", user.IsAdmin.ToString()));
+                    }
+                }
+
                 claims.Add(new Claim(ClaimTypes.Email, username));
-            
             }
 
             return claims;
@@ -57,6 +66,5 @@ namespace Thinktecture.IdentityServer.Custom
                 return string.Format("{0}{1}", ProfileClaimPrefix, propertyName);
             }
         }
-
     }
 }
